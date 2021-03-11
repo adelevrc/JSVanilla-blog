@@ -1,23 +1,31 @@
 // j'appelle express et mongoose et body parser ! 
 const bodyParser = require('body-parser'); //body parser pour mettre les données dans le bon format pour la bdd
 const mongoose = require('mongoose'); //mongoose pour communiquer avec la bdd
-
 // je fais en sorte qu'express utilise sa méthode de router et je fais en sorte que app l'utilise !
 const express = require('express');
-
-// Je créé une variable qui va permettre d'executer express (créer une appli express)
+// Je crée une variable qui va permettre d'executer express (créer une appli express)
 const app = express();
 
-// je connecte ma database. Action qui prend un peu de temps donc c'est bien de le mettre au début du code
-let urlMongoDb = require('./config.json')
+// app.get('/',(req, res) => {
+//   res.send('we are on home'); 
+//   });
 
-mongoose.connect(urlMongoDb.URL, 
+// je connecte ma database. Action qui prend un peu de temps donc c'est bien de le mettre au début du code
+//let urlMongoDb = require('mongodb+srv://neko17:XgrUEtZMjw@cluster0.zpbul.mongodb.net/testBlog?retryWrites=true&w=majority')
+
+// mongoose.connect('mongodb+srv://neko17:XgrUEtZMjw@cluster0.zpbul.mongodb.net/testBlog?retryWrites=true&w=majority', () =>console.log('connected to mongo'));
+
+// app.listen(3000, () => {
+//   console.log('j’écoute sur le port 3000 !')});
+
+
+mongoose.connect('mongodb+srv://neko17:XgrUEtZMjw@cluster0.zpbul.mongodb.net/testBlog?retryWrites=true&w=majority', 
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-// j'évite les problèmes de CORS 
+// j'évite les problèmes de CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -34,12 +42,11 @@ app.use(bodyParser.json());
 // je créé mon modèle d'articles 
 const router = express.Router();
 
-// VOIR SI TOUTES CES DONNÉES SONT UTILES 
 const articleSchema = mongoose.Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
   topic: {type: String, required: true},   
-  date: { type: Date, default : Date.now},
+  date: { type: Date, default : Date.now, form},
   content: {type: String, required: true},
 });
 

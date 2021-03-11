@@ -18,7 +18,10 @@ let generateHtml = (data) => {
 // Pour éviter que mon HTML se recharge à chaque passe de boucle pour n'afficher que les datas numéro i alors 
 // j'additionne mon html existant au nouveau html que je passe dans la boucle          
 // ici je réappelle ma variable html mais sans mettre le let devant car je ne la définis pas,
-// je lui ajoute seulement une autre valeur !          
+// je lui ajoute seulement une autre valeur !  
+
+        let article_date = data[i].date;
+        console.log(typeof(article_date));
         html += `
         <div class="article">
         <h2> ${data[i].title} </h2>
@@ -28,7 +31,8 @@ let generateHtml = (data) => {
                 <h3> Nom de l'auteur : </h3>
                 <p class="background_data"> ${data[i].author} </p>
                 <h3> Date de publication : </h3>
-                <p class="background_data"> ${data[i].date}</p>
+                <p class="background_data"> ${article_date}</p>
+
             <button class="voir" onclick="getArticle('${data[i]._id}')"> Voir plus </button>
             </div>
         </div>
