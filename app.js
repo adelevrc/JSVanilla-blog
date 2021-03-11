@@ -11,7 +11,6 @@ const app = express();
 //   });
 
 // je connecte ma database. Action qui prend un peu de temps donc c'est bien de le mettre au début du code
-//let urlMongoDb = require('mongodb+srv://neko17:XgrUEtZMjw@cluster0.zpbul.mongodb.net/testBlog?retryWrites=true&w=majority')
 
 // mongoose.connect('mongodb+srv://@cluster0.zpbul.mongodb.net/testBlog?retryWrites=true&w=majority', () =>console.log('connected to mongo'));
 
@@ -19,7 +18,7 @@ const app = express();
 //   console.log('j’écoute sur le port 3000 !')});
 
 
-mongoose.connect('mongodb+srv://neko17:XgrUEtZMjw@cluster0.zpbul.mongodb.net/testBlog?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://@cluster0.zpbul.mongodb.net/testBlog?retryWrites=true&w=majority', 
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
